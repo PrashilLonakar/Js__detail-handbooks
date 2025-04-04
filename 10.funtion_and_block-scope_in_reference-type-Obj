@@ -1,0 +1,26 @@
+const a = {
+    id : 1,
+    name : 'prashil',
+    getNameWithArrowFunc: () => {
+        console.log(this.name); // arrow func doesn't have own this context (it get this from its surronding lexical scope i.e global scope)
+    },
+    getNameRegularArrowFunc: function(){
+        console.log(this.name); //Regular func have own this context (this refer to inside obect a i.e function scope)
+    }
+}
+
+console.log('global scope',this) // this === window
+
+
+function b(){
+    console.log('func scope',this) //  function scope
+}
+
+c = () => {
+    console.log('arrow func scope',this) // it get this from its surronding lexical scope i.e global scope
+}
+
+a.getNameWithArrowFunc()
+a.getNameRegularArrowFunc()
+b();
+c();
